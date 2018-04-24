@@ -1,0 +1,19 @@
+#(C) 615283 James Conway
+
+name: RenameFilter
+author: 615283
+version: 1.4
+main: com.georlegacy.general.renamefilter.RenameFilter
+commands:
+  rf:
+    aliases: renamefilter
+    description: Main command for RenameFilter
+    usage: </command> [reload]
+    permission: renamefilter.command
+permissions:
+  renamefilter.command:
+    description: Allows usage of the RenameFilter command
+    default: op
+  renamefilter.bypass:
+    description: Allows the player to bypass the RenameFilter
+    default: false

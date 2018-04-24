@@ -1,0 +1,6 @@
+rename-cancel-msg: '&4Lol you cant rename that.'
+rename-bypass-msg: '&6Ya bypassed it, yay!'
+used-dictionaries:
+- words-fr.txt
+- words-en.txt
+- words-vn.txt
