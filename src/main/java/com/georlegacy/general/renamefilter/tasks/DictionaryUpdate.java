@@ -21,6 +21,7 @@ public class DictionaryUpdate extends TimerTask {
     public void run() {
         rf.getLogger().info("Checking words repository for updates...");
         try {
+            System.out.print(rf.gitHub);
             GHRepository wordsrepo = rf.gitHub.getUser("615283").getRepository("Banned-Words");
             List<GHContent> wordfiles = wordsrepo.getDirectoryContent("dictionaries");
             for (GHContent wordfile : wordfiles) {
