@@ -6,7 +6,9 @@ import org.kohsuke.github.GHRepository;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.TimerTask;
@@ -21,7 +23,6 @@ public class DictionaryUpdate extends TimerTask {
     public void run() {
         rf.getLogger().info("Checking words repository for updates...");
         try {
-            System.out.print(rf.gitHub);
             GHRepository wordsrepo = rf.gitHub.getUser("615283").getRepository("Banned-Words");
             List<GHContent> wordfiles = wordsrepo.getDirectoryContent("dictionaries");
             for (GHContent wordfile : wordfiles) {
@@ -29,14 +30,14 @@ public class DictionaryUpdate extends TimerTask {
                 String filename = wordfile.getName();
                 File local = new File(rf.getDataFolder() + File.separator + "dictionaries" + File.separator + filename);
                 if (!local.exists()) {
-                    Files.copy(wordfile.read(), local.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                    rf.getLogger().info("Copied " + filename + "successfully.");
-                    return;
+                    Files.copy(wordfile.read(), Paths.get(rf.getDataFolder() + File.separator + "dictionaries" + File.separator + wordfile.getName()), StandardCopyOption.REPLACE_EXISTING);
+                    rf.getLogger().info("Copied " + filename + " successfully.");
+                    continue;
                 }
                 long localsize = local.length();
-                if (size==localsize) return;
-                Files.copy(wordfile.read(), local.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                rf.getLogger().info("Updated " + filename + "successfully.");
+                if (size==localsize) continue;
+                Files.copy(wordfile.read(), Paths.get(rf.getDataFolder() + File.separator + "dictionaries" + File.separator + wordfile.getName()), StandardCopyOption.REPLACE_EXISTING);
+                rf.getLogger().info("Updated " + filename + " successfully.");
             }
         } catch (IOException e) {
             rf.getLogger().severe("An exception occurred whilst attempting to find updates.");

@@ -38,8 +38,8 @@ public class RenameFilter extends JavaPlugin {
         pm.registerEvents(new RenameListener(this), this);
         this.getCommand("rf").setExecutor(new RFCommand(this));
         getConfigHandler().load();
-        updateDictionary();
         this.loadGithub();
+        updateDictionary();
     }
 
     @Override

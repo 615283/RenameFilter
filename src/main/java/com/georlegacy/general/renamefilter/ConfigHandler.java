@@ -16,7 +16,7 @@ public class ConfigHandler {
     public static final String renameFilterPrefix = "&e[&4RenameFilter&e] ";
 
     public void load() {
-
+        new File(rf.getDataFolder() + File.separator + "dictionaries").mkdirs();
     }
 
     public String cancelMsg() {
