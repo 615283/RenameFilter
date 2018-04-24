@@ -17,6 +17,8 @@ public class ConfigHandler {
 
     public void load() {
         new File(rf.getDataFolder() + File.separator + "dictionaries").mkdirs();
+        if (!new File(rf.getDataFolder() + File.separator + "config.yml").exists())
+            rf.saveResource("config.yml", true);
     }
 
     public String cancelMsg() {
