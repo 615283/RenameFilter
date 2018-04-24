@@ -27,6 +27,11 @@ public class DictionaryUpdate extends TimerTask {
                 long size = wordfile.getSize();
                 String filename = wordfile.getName();
                 File local = new File(rf.getDataFolder() + File.separator + "dictionaries" + File.separator + filename);
+                if (!local.exists()) {
+                    Files.copy(wordfile.read(), local.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    rf.getLogger().info("Copied " + filename + "successfully.");
+                    return;
+                }
                 long localsize = local.length();
                 if (size==localsize) return;
                 Files.copy(wordfile.read(), local.toPath(), StandardCopyOption.REPLACE_EXISTING);

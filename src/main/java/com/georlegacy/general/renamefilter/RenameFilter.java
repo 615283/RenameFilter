@@ -21,7 +21,7 @@ public class RenameFilter extends JavaPlugin {
 
     private void loadGithub() {
         try {
-            gitHub = GitHub.connect();
+            gitHub = GitHub.connectAnonymously();
         } catch (IOException e) {
             e.printStackTrace();
         }
