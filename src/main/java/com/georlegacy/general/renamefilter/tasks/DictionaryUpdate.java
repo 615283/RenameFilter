@@ -22,7 +22,7 @@ public class DictionaryUpdate extends TimerTask {
         rf.getLogger().info("Checking words repository for updates...");
         try {
             GHRepository wordsrepo = rf.gitHub.getUser("615283").getRepository("Banned-Words");
-            List<GHContent> wordfiles = wordsrepo.getDirectoryContent("words");
+            List<GHContent> wordfiles = wordsrepo.getDirectoryContent("dictionaries");
             for (GHContent wordfile : wordfiles) {
                 long size = wordfile.getSize();
                 String filename = wordfile.getName();
