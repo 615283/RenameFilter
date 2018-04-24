@@ -2,7 +2,7 @@
 
 name: RenameFilter
 author: 615283
-version: 1.4
+version: ${project.version}
 main: com.georlegacy.general.renamefilter.RenameFilter
 commands:
   rf:
