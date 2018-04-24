@@ -1,19 +1,18 @@
 package com.georlegacy.general.renamefilter.tasks;
 
 import com.georlegacy.general.renamefilter.RenameFilter;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.kohsuke.github.GHContent;
 import org.kohsuke.github.GHRepository;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
-import java.util.TimerTask;
 
-public class DictionaryUpdate extends TimerTask {
+public class DictionaryUpdate extends BukkitRunnable {
     private RenameFilter rf;
     public DictionaryUpdate(RenameFilter rf) {
         this.rf = rf;

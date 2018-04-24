@@ -28,8 +28,7 @@ public class RenameFilter extends JavaPlugin {
     }
 
     private void updateDictionary() {
-        Timer t = new Timer();
-        t.scheduleAtFixedRate(new DictionaryUpdate(this), 0l, 1000*60*60*12);
+        new DictionaryUpdate(this).runTaskTimerAsynchronously(this, 0l, 1000*60*60*12);
     }
 
     @Override
