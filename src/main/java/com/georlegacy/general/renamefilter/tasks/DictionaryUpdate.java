@@ -1,6 +1,7 @@
 package com.georlegacy.general.renamefilter.tasks;
 
 import com.georlegacy.general.renamefilter.RenameFilter;
+import com.google.common.base.CharMatcher;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.kohsuke.github.GHContent;
 import org.kohsuke.github.GHRepository;

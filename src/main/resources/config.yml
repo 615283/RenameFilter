@@ -1,5 +1,9 @@
 rename-cancel-msg: '&4Lol you cant rename that.'
+rename-unicode-msg: '&5Ya cant use unicode!'
 rename-bypass-msg: '&6Ya bypassed it, yay!'
+
+block-unicode: true
+
 used-dictionaries:
 - words-fr.txt
 - words-en.txt

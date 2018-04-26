@@ -2,6 +2,7 @@ package com.georlegacy.general.renamefilter.events;
 
 import java.util.List;
 
+import com.google.common.base.CharMatcher;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -39,7 +40,14 @@ public class RenameListener implements Listener {
                             String displayName = meta.getDisplayName();
                             List<String> list = plugin.getConfigHandler().getBannedWords();
                             for (String word : list) {
-                                if (displayName.toLowerCase().contains(word.toLowerCase())) {
+                                String convertedDisplayName = displayName
+                                        .replace("3", "e")
+                                        .replace("5", "s")
+                                        .replace("4", "a")
+                                        .replace("8", "b")
+                                        .replace("1", "i")
+                                        .replace("|", "i");
+                                if (convertedDisplayName.toLowerCase().contains(word.toLowerCase())) {
                                     if (clicker.hasPermission("renamefilter.bypass")) {
                                         String bypassmsg = plugin.getConfigHandler().bypassMsg();
                                         clicker.playSound(clicker.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 1, 0);
@@ -51,6 +59,20 @@ public class RenameListener implements Listener {
                                         e.setCancelled(true);
                                         clicker.giveExpLevels(0);
                                         clicker.sendMessage(ChatColor.translateAlternateColorCodes('&', ConfigHandler.renameFilterPrefix + failmsg));
+                                        clicker.playSound(clicker.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 1, 0);
+                                    }
+                                } else if ((!CharMatcher.ascii().matchesAllOf(displayName)) && plugin.getConfigHandler().banUnicode()) {
+                                    if (clicker.hasPermission("renamefilter.bypass")) {
+                                        String bypassmsg = plugin.getConfigHandler().bypassMsg();
+                                        clicker.playSound(clicker.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 1, 0);
+                                        clicker.sendMessage(ChatColor.translateAlternateColorCodes('&', ConfigHandler.renameFilterPrefix + bypassmsg));
+                                        return;
+                                    }
+                                    else {
+                                        String unicodemsg = plugin.getConfigHandler().unicodeMsg();
+                                        e.setCancelled(true);
+                                        clicker.giveExpLevels(0);
+                                        clicker.sendMessage(ChatColor.translateAlternateColorCodes('&', ConfigHandler.renameFilterPrefix + unicodemsg));
                                         clicker.playSound(clicker.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 1, 0);
                                     }
                                 }

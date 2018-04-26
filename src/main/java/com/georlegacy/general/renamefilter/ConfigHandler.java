@@ -21,6 +21,16 @@ public class ConfigHandler {
             rf.saveResource("config.yml", true);
     }
 
+    public boolean banUnicode() {
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(new File(rf.getDataFolder() + File.separator + "config.yml"));
+        return config.getBoolean("block-unicode");
+    }
+
+    public String unicodeMsg() {
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(new File(rf.getDataFolder() + File.separator + "config.yml"));
+        return config.getString("rename-unicode-msg");
+    }
+
     public String cancelMsg() {
         YamlConfiguration config = YamlConfiguration.loadConfiguration(new File(rf.getDataFolder() + File.separator + "config.yml"));
         return config.getString("rename-cancel-msg");
