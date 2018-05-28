@@ -28,7 +28,7 @@ public class RenameFilter extends JavaPlugin {
     }
 
     private void updateDictionary() {
-        new DictionaryUpdate(this).runTaskTimerAsynchronously(this, 0l, 1000*60*60*12);
+        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new DictionaryUpdate(this), 0L, 20*60*60*6L);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class RenameFilter extends JavaPlugin {
         this.getCommand("rf").setExecutor(new RFCommand(this));
         getConfigHandler().load();
         this.loadGithub();
-        updateDictionary();
+        this.updateDictionary();
     }
 
     @Override
